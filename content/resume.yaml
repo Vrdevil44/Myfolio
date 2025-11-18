@@ -1,94 +1,233 @@
-tagline: "Infrastructure-first IT specialist"
+tagline: 'Infrastructure-first IT Specialist & M365 Admin'
 summary: >-
-  Infrastructure-first IT specialist turning messy networks into measurable systems with SvelteKit, Astro,
-  Solid, and Qwik islands. Obsessed with 3D visuals, micro-interactions, and resilient dark-mode UX.
+  MSP-seasoned IT Infrastructure Analyst with 3+ years across British Columbia, Ontario, and Alberta, turning
+  messy networks into labeled, measurable systems. Experienced with first-visit audits, rack/cabinet
+  standardization, AP planning, structured networking, endpoint support, and Microsoft 365/Entra
+  administration for enterprise and Fortune 500 clients.
 skills:
   - name: IT & Networking
-    intensity: 0.9
+    intensity: 0.95
     tools:
-      - Cisco Switching
-      - MikroTik Routing
-      - Network Automation
-      - VLAN Design
-  - name: Cloud & Identity
-    intensity: 0.78
+      - Cisco Switch Configuration (basic–intermediate)
+      - VLANs, DHCP, DNS, VPN Setup
+      - Structured Cabling (Cat6, Patch Panels, RJ45)
+      - Rack Mounting, PoE Devices, Wireless APs
+      - Palo Alto (exposure), Sophos Firewall
+  - name: Cloud & Admin
+    intensity: 0.85
     tools:
-      - M365 Administration
-      - Entra ID
-      - SharePoint Online
-      - Automation Accounts
-  - name: Systems & Ops
+      - Microsoft 365 Admin, Google Workspace
+      - AWS EC2/IAM (basic)
+      - Project Management
+      - Trello, Notion, JIRA, Slack
+  - name: System Admin
+    intensity: 0.86
+    tools:
+      - Windows Server 2019, Active Directory
+      - Azure AD, GPOs, OU Structuring
+      - Intune, Imaging & Deployment, Remote Wipe
+      - Security Policies, SharePoint, Exchange Online
+  - name: Support & Tools
+    intensity: 0.88
+    tools:
+      - RMM & Remote Access (Datto RMM, Autotask)
+      - RDP, AnyDesk, TeamViewer
+      - Ticketing & Documentation (SOP creation, audits, client reporting)
+      - Device Provisioning, Printer/Scanner Troubleshooting
+      - IT Infrastructure Design, Onsite Assessments & Consultations
+  - name: Development
     intensity: 0.72
     tools:
-      - Windows Server
-      - Hybrid Identity
-      - Monitoring
-      - Backup & Recovery
-  - name: Engineering
-    intensity: 0.82
-    tools:
-      - SvelteKit
-      - Astro Islands
-      - Qwik
-      - SolidJS
-      - Three.js / Threlte
+      - Frontend Dev (React.js, HTML5, CSS3, JavaScript, Tailwind CSS)
+      - Backend (FastAPI, MongoDB, Firebase Hosting)
+      - Git/GitHub, VS Code, Docker (basic), GitHub Actions
 experience:
-  - role: Infrastructure Engineer
-    company: Nebula-Portal
-    location: Remote · India
-    timeframe: 2023 — Present
-    icon: i-tabler-server-2
+  - role: On-Site IT Executive
+    company: Unio Tech Solutions
+    location: Vancouver, BC (Multi-City Canada)
+    timeframe: Jun 2025 – Present
+    icon: i-tabler-building-community
     highlights:
-      - Migrated brownfield networks to automated, observable infrastructure.
-      - Delivered zero-downtime cutovers with preflight simulations and playbooks.
-      - Built self-service portals with SSO and audited automation.
-  - role: Systems Administrator
-    company: MusicPad
-    location: On-site · Pune
-    timeframe: 2021 — 2023
+      - Sole field IT executive for BC, supporting institutional, commercial, executive, and government clients across BC, Ontario, and Alberta.
+      - Delivered first site visits with inventory, network, and tech audits with 6-hour turnaround for small offices.
+      - Consolidated fragmented networks by removing unmanaged desk switches, deploying labeled data drops, and standardizing racks into secure cabinets.
+      - Boosted Wi-Fi throughput and LAN speeds through AP planning, channel placement, cabling cleanup, and firewall path corrections.
+      - Verified device posture for Windows updates, AV, Qualys, and CrowdStrike while providing evidence-based reports.
+      - Reduced recurring tickets post-remediation and handed off SOPs to client IT teams.
+      - Produced a repeatable “First-Visit Pack” adopted HQ-wide, combining inventory to risk maps and remediation plans.
+      - Supported high-profile clients including Intact, Bell, Sephora, ADP, and Snapchat across multiple provinces.
+  - role: IT Analyst Intern
+    company: Archway Community Services
+    location: Abbotsford, BC
+    timeframe: Feb 2025 – Jun 2025
+    icon: i-tabler-shield-lock
+    highlights:
+      - Delivered Tier 1 and 2 support to 600+ employees daily using Autotask and Datto RMM while maintaining rapid resolution times.
+      - Administered Microsoft 365/Entra stack (Azure AD, Intune, Exchange, SharePoint, Defender, Teams) and led MFA rollout to 80% adoption.
+      - Deployed and imaged 100+ Windows 10/11 workstations under Server 2019 OU/GPO using standard checklists.
+      - Authored SOPs, guides, and workflows that reduced escalations and accelerated onboarding from two weeks to five days.
+      - Resolved tickets remotely via RMM tools, supporting VPNs, mapped drives, printers, cloud storage, and Sophos firewalls.
+      - Assisted with SharePoint departmental migrations and delivered end-user training for smooth transitions.
+  - role: IT Infrastructure Analyst
+    company: Arini Data Services
+    location: Abbotsford, BC
+    timeframe: Mar 2024 – Mar 2025
     icon: i-tabler-topology-star
     highlights:
-      - Unified monitoring across endpoints, servers, and SaaS.
-      - Reduced ticket volume by 30% with proactive patching and asset intelligence.
-      - Championed accessibility-first UX for internal dashboards.
+      - Installed and certified 10,000+ meters of Cat6/Cat6e structured cabling with Fluke compliance tests across five client sites.
+      - Designed and mounted 20+ secure network racks with labeling systems and compliance documentation for scalability.
+      - Deployed and configured 200+ devices (POS, APs, IP cameras, access control, Samsung display modules) for Tesla and JD Sports retail sites.
+      - Delivered uniform retail display setups for Tesla, reducing deployment time and improving reliability of nationwide campaigns.
+      - Built internal React.js/MongoDB tools for inventory and ticket tracking, cutting errors and streamlining operations.
+      - Coordinated with contractors, electricians, and client IT teams while training staff on POS, display, and access systems.
+  - role: Technical Operations Supervisor
+    company: Veerji’s Haweli
+    location: Abbotsford, BC
+    timeframe: Nov 2023 – Nov 2024
+    icon: i-tabler-clipboard-heart
+    highlights:
+      - Supervised 10+ staff per shift across a multi-department restaurant and events business, managing scheduling and compliance workflows.
+      - Achieved 99% uptime for POS systems, printers, order servers, routers, Wi-Fi APs, and CCTV while guiding a Ranger to Clover migration.
+      - Trained staff on customer service and basic POS troubleshooting, reducing escalations by half and improving redundancy.
+      - Migrated manual scheduling and inventory processes to digitized workflows, streamlining payroll and procurement accuracy.
+      - Coordinated event logistics and tech setups for weddings, festivals, and corporate bookings to ensure seamless experiences.
+      - Maintained a strong review score through reliable operations and escalation handling.
+  - role: Digital Operations Assistant (Intern)
+    company: Coli Spaces
+    location: India
+    timeframe: Apr 2023 – Jun 2023
+    icon: i-tabler-devices-pc
+    highlights:
+      - Developed a Flutter app for internal workflow and inventory tracking.
+      - Built React and FastAPI prototypes with Firebase Hosting for dashboards.
+      - Supported vendor automation workflows, reducing manual effort.
+      - Improved social media reach through analytics-driven campaigns.
+  - role: Web Developer Intern
+    company: RAJ Speed Honda
+    location: India
+    timeframe: Sep 2019 – Mar 2020
+    icon: i-tabler-devices-code
+    highlights:
+      - Launched the dealership’s first responsive website using HTML/CSS/JS/PHP/MySQL.
+      - Boosted organic traffic with SEO and Google Analytics.
+      - Designed brand identity aligned with the local market and built inquiry workflows to increase digital leads.
+  - role: Web Developer (Part-Time)
+    company: Asia Jaunt
+    location: India
+    timeframe: Jun 2019 – Aug 2019
+    icon: i-tabler-world-pin
+    highlights:
+      - Built and deployed a multi-page Next.js and Tailwind CSS travel website.
+      - Executed SEO strategy, tripling search visibility and boosting lead capture via Firebase forms.
+      - Integrated analytics and conversion tracking to optimize booking funnels.
+  - role: Customer Support Executive
+    company: Paytm
+    location: India
+    timeframe: Apr 2019 – Jun 2019
+    icon: i-tabler-messages
+    highlights:
+      - Delivered Tier 1 support across voice, chat, and email channels with high SLA adherence.
+      - Contributed to customer education redesign to reduce repeat queries.
+      - Improved knowledge base UX with HTML/CSS/JS tweaks and routed feedback to product teams.
 education:
-  - title: B.S. Computer Science
-    institution: Example University
+  - title: Bachelor of Computer Information Systems
+    institution: University of the Fraser Valley – Abbotsford, BC
+    timeframe: Sep 2021 – 2025
+    details:
+      - Dean’s List (4 terms)
+      - Hackathon 3.0 Runner-Up
+      - Academic Planning Committee Member
+  - title: Intermediate in Mathematics and Computer Science
+    institution: Delhi Public School – India
+    timeframe: May 2018
+    details:
+      - National Children Science Congress
+      - National Talent Search Exam
+      - Student Council House Captain
 certifications:
-  - title: Web Performance Fundamentals
-    issuer: Web Speed Institute
+  - title: Cisco CCNA (200-301)
+    issuer: In Progress
+  - title: Microsoft Azure Administrator (AZ-104)
+    issuer: In Progress
+  - title: Google IT Support Professional Certificate
+    issuer: 2025
+  - title: Microsoft Cybersecurity Fundamentals
+    issuer: 2024
+  - title: Java SE 7 Programmer II (Oracle)
+    issuer: 2023
+  - title: React.js Developer
+    issuer: 2023
+  - title: Google Technical Support Fundamentals
+    issuer: 2023
+  - title: Web Scraping with Python
+    issuer: 2024
+  - title: HackerRank Problem Solving (Basic)
+    issuer: 2023
 projects:
-  - name: Nebula-Portal
-    description: Observability-first portal for provisioning lab and production resources.
-    category: Cloud
-    tags: [Automation, Telemetry, SSO]
-    cover: "/images/nebula.jpg"
+  - name: MusicPad (Browser-Based Audio Sampler)
+    description: >-
+      Built a browser-based music pad with mapped samples, real-time triggering, polyphonic playback, and a recording
+      module with looped playback and WAV export using the Web Audio API.
+    category: Development
+    tags: [JavaScript, Web Audio, Recording]
     links:
-      - label: Live Demo
-        url: "https://example.com/nebula"
-      - label: GitHub
-        url: "https://github.com/example/nebula"
-  - name: MusicPad
-    description: M365 and identity automation suite with user-friendly runbooks.
+      - label: Portfolio
+        url: 'https://vrdevil44.github.io/portfolio/'
+  - name: Digitalization of Raj Speed Honda (Systems Blueprint + Website Launch)
+    description: >-
+      Led systems analysis and deployed the dealership’s first responsive website with analytics and SEO, delivering
+      transformation plans for integrated inventory, sales/CRM, logistics, and finance modules.
     category: Infrastructure
-    tags: [M365, Entra, Automation]
-    cover: "/images/musicpad.jpg"
-    links:
-      - label: Case Study
-        url: "https://example.com/musicpad"
-      - label: GitHub
-        url: "https://github.com/example/musicpad"
-  - name: Myfolio
-    description: Gamified portfolio featuring 3D scenes, animation, and YAML-driven content.
-    category: Experience
-    tags: [SvelteKit, Threlte, GSAP]
-    cover: "/images/myfolio.jpg"
-    links:
-      - label: Live Demo
-        url: "https://example.com/myfolio"
+    tags: [Systems Analysis, Web, SEO]
+  - name: Webly – UI/UX Portfolio Prototype
+    description: >-
+      Engineered a glassmorphism portfolio site with mobile-first responsive layouts, micro-interactions, accessibility,
+      and a modular Webpack pipeline for performant delivery.
+    category: Development
+    tags: [HTML/CSS/JS, UI/UX, Webpack]
+  - name: Billing Management System (BMS)
+    description: >-
+      Built a Next.js billing system integrated with Java REST services, TypeScript validation, searchable tables,
+      and print/export functions to streamline management and compliance.
+    category: Development
+    tags: [Next.js, TypeScript, REST]
+  - name: MiRo-E Robot Emotion Detection
+    description: >-
+      Integrated a BERT NLP model with TensorFlow for real-time emotion recognition on MiRo-E companion robots,
+      achieving ~82% classification accuracy and delivering live demos for affective computing use cases.
+    category: AI/ML
+    tags: [TensorFlow, BERT, Robotics]
+  - name: Prognosys — Personalized Nutrition from Biomarkers
+    description: >-
+      Developed a two-model Python pipeline that converts blood biomarkers into nutrition insights and meal plans with
+      NHANES and USDA data, delivering a web prototype with preference-aware diets and grocery lists.
+    category: AI/ML
+    tags: [Python, Nutrition, APIs]
+  - name: Nebula-Portal — Immersive Landing Page
+    description: >-
+      Built an immersive Next.js landing page blending Three.js visuals, GSAP timelines, and Framer Motion
+      micro-interactions with performance optimizations for smooth 3D/2D experiences.
+    category: Frontend
+    tags: [Next.js, Three.js, Animation]
+  - name: Fractal-Gallery (Fractal Nexus)
+    description: >-
+      Created an interactive 3D math-art gallery with Three.js and WebGL, featuring dynamic fractal visualizations,
+      cyberpunk aesthetics, and adaptive performance scaling for smooth interaction.
+    category: Frontend
+    tags: [Three.js, WebGL, Visualization]
 references:
-  - name: Vibhu Dikshit
-    contact: contact@example.com
+  - name: Jason Saiet
+    role: Owner, Unio Tech Solutions
+    contact: jason@uniotechsolutions.com · +1 (416) 821-9981
+  - name: Jashan Tatla
+    role: Director, Arini Data Services
+    contact: jtatla@arini.ca · +1 (604) 300-6442
+  - name: Chandan Arora
+    role: IT Supervisor, Archway Community Service
+    contact: chandan.arora@archway.ca · +1 (778) 345-6481
+  - name: Sahil Trehan
+    role: Manager, Veerji’s Haweli
+    contact: sahiltrehan15@gmail.com · +1 (778) 320-6080
 blog:
   - title: Designing a gamified hero with Threlte
     summary: How the 3D hero and Lenis smooth scrolling join forces for immersion.
