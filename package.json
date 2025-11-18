@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "prepare": "husky install",
-    "lint": "pnpm -r lint",
+    "lint": "pnpm --filter @myfolio/site lint",
     "check": "pnpm -r check",
     "build": "pnpm -r build"
   },
