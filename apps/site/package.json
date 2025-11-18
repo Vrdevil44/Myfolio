@@ -13,6 +13,7 @@
   "dependencies": {
     "@sveltejs/kit": "^2.8.1",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "@fontsource-variable/manrope": "^5.1.0",
     "@threlte/core": "^8.0.0",
     "gsap": "^3.12.5",
     "lenis": "^1.1.24",
@@ -23,7 +24,8 @@
     "tone": "^15.0.4",
     "unocss": "^0.64.1",
     "vite": "^5.4.11",
-    "motion": "^11.15.0"
+    "motion": "^11.15.0",
+    "yaml": "^2.6.1"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.4",
