@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch: {}
 
+concurrency:
+  group: pages
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,6 +25,8 @@ jobs:
           package_json: package.json
       - name: Install
         run: pnpm install --frozen-lockfile=false
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Build solid
         run: pnpm --filter @myfolio/solid build
       - name: Upload artifact
