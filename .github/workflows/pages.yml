@@ -1,0 +1,64 @@
+name: Deploy Myfolio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.13.1
+          run_install: false
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false
+      - name: Build SvelteKit site
+        env:
+          NODE_ENV: production
+        run: pnpm --filter @myfolio/site build
+      - name: Build Astro docs
+        run: pnpm --filter @myfolio/astro build
+      - name: Build Qwik demo
+        run: pnpm --filter @myfolio/qwik build
+      - name: Build Solid demo
+        run: pnpm --filter @myfolio/solid build
+      - name: Prepare dist bundle
+        run: |
+          mkdir -p dist
+          cp -r apps/site/build dist/site
+          cp -r apps/astro/dist dist/astro
+          cp -r apps/qwik/dist dist/qwik
+          cp -r apps/solid/dist dist/solid
+          echo '<meta http-equiv="refresh" content="0; url=site/">' > dist/index.html
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
