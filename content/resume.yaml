@@ -1,0 +1,31 @@
+summary: >-
+  Creative frontend engineer building an interactive, gamified portfolio for Vibhu Dikshit with
+  SvelteKit, Astro, Solid, and Qwik islands. Focused on 3D visuals, micro-interactions, and dark-mode UX.
+skills:
+  - SvelteKit
+  - Astro
+  - SolidJS
+  - Qwik
+  - Three.js / Threlte
+  - GSAP / Rive
+  - TypeScript
+  - UnoCSS
+experience:
+  - role: Frontend Lead
+    company: Myfolio Labs
+    timeframe: 2025
+    highlights:
+      - Architected a multi-framework monorepo with pnpm workspaces
+      - Built interactive demos with smooth scrolling and audio feedback
+education:
+  - title: B.S. Computer Science
+    institution: Example University
+certifications:
+  - title: Web Performance Fundamentals
+    issuer: Web Speed Institute
+projects:
+  - name: Myfolio
+    description: Gamified portfolio featuring 3D scenes, animation, and YAML-driven content.
+references:
+  - name: Vibhu Dikshit
+    contact: contact@example.com
