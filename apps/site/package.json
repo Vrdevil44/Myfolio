@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest run"
   },
   "dependencies": {
     "@sveltejs/kit": "^2.8.1",
@@ -18,7 +19,7 @@
     "gsap": "^3.12.5",
     "lenis": "^1.1.24",
     "p5": "^1.11.1",
-    "rive-canvas": "^2.24.0",
+    "rive-canvas": "^0.7.6",
     "svelte": "^4.2.19",
     "three": "^0.170.0",
     "tone": "^15.0.4",
@@ -38,6 +39,7 @@
     "prettier": "^3.4.1",
     "prettier-plugin-svelte": "^3.2.8",
     "svelte-check": "^4.0.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.4"
   }
 }
