@@ -1,0 +1,27 @@
+{
+  "name": "myfolio-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "pnpm@10.13.1",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "pnpm -r lint",
+    "check": "pnpm -r check",
+    "build": "pnpm -r build"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "eslint": "^9.13.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.9",
+    "prettier": "^3.4.1"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,svelte,astro,md,yaml}": "prettier --check"
+  }
+}
