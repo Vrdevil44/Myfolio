@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile=false
       - name: Lint
-        run: pnpm -r lint
+        run: pnpm lint
       - name: Run unit tests
         run: pnpm --filter @myfolio/site test
       - name: Build SvelteKit site
