@@ -7,6 +7,10 @@
 
   export let data;
 
+  const analyticsDomain = import.meta.env.VITE_PLAUSIBLE_DOMAIN ?? 'myfolio.example';
+  const analyticsApiHost = import.meta.env.VITE_PLAUSIBLE_API ?? 'https://plausible.io';
+  const sentryDsn = import.meta.env.VITE_SENTRY_DSN ?? '';
+
   const navLinks = [
     { href: '#hero', label: 'Home' },
     { href: '#experience', label: 'Experience' },
@@ -122,6 +126,25 @@
       --border: rgba(15, 23, 42, 0.08);
     }
   </style>
+
+  {#if analyticsDomain}
+    <script
+      defer
+      data-domain={analyticsDomain}
+      data-api={`${analyticsApiHost}/api/event`}
+      src={`${analyticsApiHost}/js/script.js`}
+    ></script>
+  {/if}
+
+  {#if sentryDsn}
+    <script
+      src="https://browser.sentry-cdn.com/7.114.0/bundle.min.js"
+      crossorigin="anonymous"
+      data-dsn={sentryDsn}
+      data-traces-sample-rate="0.2"
+      defer
+    ></script>
+  {/if}
 </svelte:head>
 
 <div class="flex min-h-screen flex-col">
@@ -142,6 +165,7 @@
         <button
           class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm font-semibold text-[color:var(--text-primary)] shadow-sm transition hover:border-[color:var(--accent-2)] hover:text-[color:var(--accent-2)]"
           aria-label="Toggle theme"
+          aria-pressed={theme === 'dark'}
           on:click={async () => {
             theme = theme === 'dark' ? 'light' : 'dark';
             await playTone(theme === 'dark' ? 'E4' : 'C5');

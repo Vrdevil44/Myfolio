@@ -5,8 +5,10 @@
   export let skills: ResumeSkillCategory[] = [];
 
   let rotation = 0;
-  let frameId: number;
+  let frameId: number | null = null;
   let orbitEl: HTMLDivElement | null = null;
+  let prefersReducedMotion = false;
+  let mediaQuery: MediaQueryList | null = null;
 
   const animate = () => {
     rotation = (rotation + 0.15) % 360;
@@ -17,10 +19,26 @@
   };
 
   onMount(() => {
-    frameId = requestAnimationFrame(animate);
+    mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const handlePreference = () => {
+      prefersReducedMotion = mediaQuery?.matches ?? false;
+      if (prefersReducedMotion && frameId) {
+        cancelAnimationFrame(frameId);
+        frameId = null;
+      } else if (!prefersReducedMotion && !frameId) {
+        frameId = requestAnimationFrame(animate);
+      }
+    };
+
+    handlePreference();
+    mediaQuery?.addEventListener('change', handlePreference);
+
+    return () => mediaQuery?.removeEventListener('change', handlePreference);
   });
 
-  onDestroy(() => cancelAnimationFrame(frameId));
+  onDestroy(() => {
+    if (frameId) cancelAnimationFrame(frameId);
+  });
 
   const radius = (index: number) => 120 + index * 26;
 </script>
