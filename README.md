@@ -1,4 +1,4 @@
-# Myfolio Monorepo
+# Myfolio Monorepo - Portfolio
 
 Interactive, gamified portfolio scaffolding for Vibhu Dikshit. This monorepo uses pnpm workspaces to host
 multiple front-end apps: a SvelteKit core experience, an Astro knowledge hub, a Qwik mini-game, and a
