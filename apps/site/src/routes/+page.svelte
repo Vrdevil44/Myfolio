@@ -7,11 +7,15 @@
   import ProjectCard from '$lib/components/ProjectCard.svelte';
   import Section from '$lib/components/Section.svelte';
   import TimelineItem from '$lib/components/TimelineItem.svelte';
+  import { filterProjects } from '$lib/utils/filter';
   import type { Resume, ResumeProject } from '$lib/types/resume';
 
-  type SkillOrbitComponentType = typeof import('$lib/components/SkillOrbit.svelte').default;
-  type SkillGraphComponentType = typeof import('$lib/components/SkillGraph.svelte').default;
-  type RiveSignatureComponentType = typeof import('$lib/components/RiveSignature.svelte').default;
+  type SkillOrbitComponentType =
+    typeof import('$lib/components/SkillOrbit.svelte').default;
+  type SkillGraphComponentType =
+    typeof import('$lib/components/SkillGraph.svelte').default;
+  type RiveSignatureComponentType =
+    typeof import('$lib/components/RiveSignature.svelte').default;
 
   export let data: { resume: Resume };
   const { resume } = data;
@@ -31,8 +35,14 @@
   let SkillGraphComponent: SkillGraphComponentType | null = null;
   let RiveSignatureComponent: RiveSignatureComponentType | null = null;
   let sparkAnimation: ReturnType<typeof animate> | null = null;
+  let visibleProjects = resume.projects;
 
-  const filters = ['All', ...new Set(resume.projects.flatMap((p) => p.tags ?? []) || [])];
+  const filters = [
+    'All',
+    ...new Set(resume.projects.flatMap((p) => p.tags ?? []) || []),
+  ];
+
+  $: visibleProjects = filterProjects(resume.projects, selectedFilter);
   const structuredData = JSON.stringify(
     {
       '@context': 'https://schema.org',
@@ -44,21 +54,23 @@
       sameAs: ['https://github.com', 'https://linkedin.com'],
       worksFor: {
         '@type': 'Organization',
-        name: 'Myfolio'
+        name: 'Myfolio',
       },
       hasOccupation: (resume.experience ?? []).map((experience) => ({
         '@type': 'Occupation',
         name: experience.role,
         description: experience.highlights?.join(' '),
-        startDate: experience.timeframe
+        startDate: experience.timeframe,
       })),
       hasPart: (resume.projects ?? []).map((project) => ({
         '@type': 'CreativeWork',
         headline: project.name,
         abstract: project.description,
         genre: project.tags,
-        url: project.links?.find((link) => link.label?.toLowerCase().includes('live'))?.url
-      }))
+        url: project.links?.find((link) =>
+          link.label?.toLowerCase().includes('live')
+        )?.url,
+      })),
     },
     null,
     2
@@ -68,7 +80,7 @@
     if (SkillOrbitComponent && SkillGraphComponent) return;
     const [orbitModule, graphModule] = await Promise.all([
       import('$lib/components/SkillOrbit.svelte'),
-      import('$lib/components/SkillGraph.svelte')
+      import('$lib/components/SkillGraph.svelte'),
     ]);
     SkillOrbitComponent = orbitModule.default;
     SkillGraphComponent = graphModule.default;
@@ -84,17 +96,25 @@
     if (prefersReducedMotion || !particleCanvas) return;
     const { default: P5 } = await import('p5');
     particleSketch = new P5((s) => {
-      const dots: { x: number; y: number; z: number; vx: number; vy: number }[] = [];
+      const dots: {
+        x: number;
+        y: number;
+        z: number;
+        vx: number;
+        vy: number;
+      }[] = [];
 
       s.setup = () => {
-        s.createCanvas(particleCanvas?.clientWidth ?? 600, 360, s.WEBGL).parent(particleCanvas!);
+        s.createCanvas(particleCanvas?.clientWidth ?? 600, 360, s.WEBGL).parent(
+          particleCanvas!
+        );
         for (let i = 0; i < 120; i++) {
           dots.push({
             x: s.random(-200, 200),
             y: s.random(-120, 120),
             z: s.random(-160, 160),
             vx: s.random(-0.4, 0.4),
-            vy: s.random(-0.4, 0.4)
+            vy: s.random(-0.4, 0.4),
           });
         }
       };
@@ -135,7 +155,11 @@
 
   const startSparkAnimation = () => {
     if (prefersReducedMotion || sparkAnimation) return;
-    sparkAnimation = animate('.spark', { opacity: [0, 1, 0] }, { duration: 2, repeat: Infinity });
+    sparkAnimation = animate(
+      '.spark',
+      { opacity: [0, 1, 0] },
+      { duration: 2, repeat: Infinity }
+    );
   };
 
   onMount(() => {
@@ -202,11 +226,6 @@
     }
   };
 
-  const filteredProjects = () =>
-    selectedFilter === 'All'
-      ? resume.projects
-      : resume.projects.filter((project) => (project.tags ?? []).includes(selectedFilter));
-
   const openProject = (project: ResumeProject) => {
     selectedProject = project;
   };
@@ -216,56 +235,86 @@
   };
 </script>
 
-  <svelte:head>
-    <title>Myfolio · Vibhu Dikshit</title>
-    <meta
-      name="description"
-      content="Interactive, gamified portfolio built with SvelteKit, immersive motion, and YAML-driven content."
-    />
-    <meta name="keywords" content="Vibhu Dikshit, portfolio, SvelteKit, 3D web, IT specialist" />
-    <meta property="og:title" content="Myfolio · Vibhu Dikshit" />
-    <meta
-      property="og:description"
-      content="Explore Vibhu Dikshit's interactive portfolio with 3D skills, projects, and gamified touches."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://myfolio.example.com" />
-    <meta property="og:image" content="https://myfolio.example.com/og.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Myfolio · Vibhu Dikshit" />
-    <meta
-      name="twitter:description"
-      content="Interactive, gamified portfolio built with SvelteKit, immersive motion, and YAML-driven content."
-    />
-    <script type="application/ld+json">
-      {structuredData}
-    </script>
-  </svelte:head>
+<svelte:head>
+  <title>Myfolio · Vibhu Dikshit</title>
+  <meta
+    name="description"
+    content="Interactive, gamified portfolio built with SvelteKit, immersive motion, and YAML-driven content."
+  />
+  <meta
+    name="keywords"
+    content="Vibhu Dikshit, portfolio, SvelteKit, 3D web, IT specialist"
+  />
+  <meta property="og:title" content="Myfolio · Vibhu Dikshit" />
+  <meta
+    property="og:description"
+    content="Explore Vibhu Dikshit's interactive portfolio with 3D skills, projects, and gamified touches."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://myfolio.example.com" />
+  <meta property="og:image" content="https://myfolio.example.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Myfolio · Vibhu Dikshit" />
+  <meta
+    name="twitter:description"
+    content="Interactive, gamified portfolio built with SvelteKit, immersive motion, and YAML-driven content."
+  />
+  <!-- prettier-ignore -->
+  <script type="application/ld+json">
+{structuredData}
+  </script>
+</svelte:head>
 
-<div class="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-12 lg:gap-14 lg:px-8" id="hero">
-  <section class="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 shadow-xl lg:grid lg:grid-cols-[1.4fr_1fr] lg:p-10">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(103,232,249,0.12),transparent_25%)]"></div>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(124,58,237,0.12),transparent_25%)]"></div>
-    <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--bg-primary)] to-transparent"></div>
+<div
+  class="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-12 lg:gap-14 lg:px-8"
+  id="hero"
+>
+  <section
+    class="relative overflow-hidden rounded-3xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-6 shadow-xl lg:grid lg:grid-cols-[1.4fr_1fr] lg:p-10"
+  >
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(103,232,249,0.12),transparent_25%)]"
+    ></div>
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_90%_10%,rgba(124,58,237,0.12),transparent_25%)]"
+    ></div>
+    <div
+      class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[color:var(--bg-primary)] to-transparent"
+    ></div>
     <div class="relative space-y-6">
-      <p class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-primary)]/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-[color:var(--accent-2)]">
+      <p
+        class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-primary)]/70 px-3 py-1 text-xs uppercase tracking-[0.3em] text-[color:var(--accent-2)]"
+      >
         {resume.tagline}
         <span class="spark i-tabler-planet"></span>
       </p>
-      <h1 class="text-4xl font-black leading-tight text-[color:var(--text-primary)] lg:text-5xl">
-        Infrastructure-first IT Specialist – turning messy networks into measurable systems.
+      <h1
+        class="text-4xl font-black leading-tight text-[color:var(--text-primary)] lg:text-5xl"
+      >
+        Infrastructure-first IT Specialist – turning messy networks into
+        measurable systems.
       </h1>
-      <p class="max-w-2xl text-lg text-[color:var(--text-muted)]">{resume.summary}</p>
-      <div class="flex flex-wrap items-center gap-3 text-sm text-[color:var(--text-muted)]">
-        <span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1">
+      <p class="max-w-2xl text-lg text-[color:var(--text-muted)]">
+        {resume.summary}
+      </p>
+      <div
+        class="flex flex-wrap items-center gap-3 text-sm text-[color:var(--text-muted)]"
+      >
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1"
+        >
           <span class="i-tabler-sparkles text-[color:var(--accent-2)]"></span>
           Animated hero & particles
         </span>
-        <span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1"
+        >
           <span class="i-tabler-cube text-[color:var(--accent)]"></span>
           3D skills orbit
         </span>
-        <span class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1">
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-3 py-1"
+        >
           <span class="i-tabler-wand text-[color:var(--accent-2)]"></span>
           YAML-driven content
         </span>
@@ -280,35 +329,59 @@
         </button>
         <button
           class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-primary)] px-5 py-3 text-sm font-semibold text-[color:var(--text-primary)] transition hover:-translate-y-1"
-          on:click={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          on:click={() =>
+            document
+              .getElementById('contact')
+              ?.scrollIntoView({ behavior: 'smooth' })}
         >
           Contact
           <span class="i-tabler-mail"></span>
         </button>
-        <p class="flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-primary)] px-4 py-2 text-xs font-semibold text-[color:var(--accent-2)]">
+        <p
+          class="flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-primary)] px-4 py-2 text-xs font-semibold text-[color:var(--accent-2)]"
+        >
           <span class="spark i-tabler-planet"></span>
           Score {score} xp
         </p>
       </div>
     </div>
-    <div class="relative mt-6 grid gap-4 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-primary)]/70 p-4 lg:mt-0">
-      <div class="relative overflow-hidden rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(103,232,249,0.18),transparent_35%)]"></div>
-        <div class="relative text-sm text-[color:var(--text-muted)]">Hero particles via p5.js · GSAP micro-interactions</div>
+    <div
+      class="relative mt-6 grid gap-4 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-primary)]/70 p-4 lg:mt-0"
+    >
+      <div
+        class="relative overflow-hidden rounded-xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-4 py-3"
+      >
+        <div
+          class="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(103,232,249,0.18),transparent_35%)]"
+        ></div>
+        <div class="relative text-sm text-[color:var(--text-muted)]">
+          Hero particles via p5.js · GSAP micro-interactions
+        </div>
       </div>
-      <div class="relative rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+      <div
+        class="relative rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4"
+      >
         <div bind:this={particleCanvas} class="h-60 w-full"></div>
       </div>
-      <div class="grid gap-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
-        <div class="flex items-center justify-between text-sm text-[color:var(--text-primary)]">
+      <div
+        class="grid gap-2 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4"
+      >
+        <div
+          class="flex items-center justify-between text-sm text-[color:var(--text-primary)]"
+        >
           <span>Astro + SvelteKit synergy</span>
-          <span class="i-tabler-topology-text text-[color:var(--accent-2)]"></span>
+          <span class="i-tabler-topology-text text-[color:var(--accent-2)]"
+          ></span>
         </div>
-        <p class="text-sm text-[color:var(--text-muted)]">Blog and docs exported as islands for /blog.</p>
+        <p class="text-sm text-[color:var(--text-muted)]">
+          Blog and docs exported as islands for /blog.
+        </p>
         {#if RiveSignatureComponent}
           <svelte:component this={RiveSignatureComponent} />
         {:else}
-          <p class="text-xs text-[color:var(--text-muted)]" role="status">Loading signature...</p>
+          <p class="text-xs text-[color:var(--text-muted)]" role="status">
+            Loading signature...
+          </p>
         {/if}
       </div>
     </div>
@@ -334,7 +407,9 @@
       {/each}
     </div>
     {#if focusedRole}
-      <p class="mt-4 text-sm text-[color:var(--text-muted)]">Hovering: {focusedRole}</p>
+      <p class="mt-4 text-sm text-[color:var(--text-muted)]">
+        Hovering: {focusedRole}
+      </p>
     {/if}
   </Section>
 
@@ -361,7 +436,7 @@
       {/each}
     </div>
     <div class="grid gap-4 md:grid-cols-2">
-      {#each filteredProjects() as project, index}
+      {#each visibleProjects as project, index}
         <div
           class="group cursor-pointer"
           on:click={() => openProject(project)}
@@ -369,9 +444,14 @@
           tabindex="0"
         >
           <ProjectCard name={project.name} description={project.description} />
-          <div class="mt-2 flex flex-wrap gap-2 text-xs text-[color:var(--text-muted)]">
+          <div
+            class="mt-2 flex flex-wrap gap-2 text-xs text-[color:var(--text-muted)]"
+          >
             {#each project.tags ?? [] as tag}
-              <span class="rounded-full border border-[color:var(--border)] px-2 py-1">{tag}</span>
+              <span
+                class="rounded-full border border-[color:var(--border)] px-2 py-1"
+                >{tag}</span
+              >
             {/each}
           </div>
         </div>
@@ -387,11 +467,22 @@
       aria-modal="true"
       aria-labelledby="project-modal-title"
     >
-      <div class="w-full max-w-2xl rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-primary)] p-6 shadow-2xl">
+      <div
+        class="w-full max-w-2xl rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-primary)] p-6 shadow-2xl"
+      >
         <div class="flex items-center justify-between gap-3">
           <div>
-            <p class="text-xs uppercase tracking-[0.3em] text-[color:var(--accent-2)]">{selectedProject.category}</p>
-            <h3 id="project-modal-title" class="text-2xl font-bold text-[color:var(--text-primary)]">{selectedProject.name}</h3>
+            <p
+              class="text-xs uppercase tracking-[0.3em] text-[color:var(--accent-2)]"
+            >
+              {selectedProject.category}
+            </p>
+            <h3
+              id="project-modal-title"
+              class="text-2xl font-bold text-[color:var(--text-primary)]"
+            >
+              {selectedProject.name}
+            </h3>
           </div>
           <button
             class="rounded-full border border-[color:var(--border)] px-3 py-1 text-sm text-[color:var(--text-muted)]"
@@ -401,11 +492,18 @@
             Close
           </button>
         </div>
-        <p class="mt-3 text-[color:var(--text-muted)]">{selectedProject.description}</p>
+        <p class="mt-3 text-[color:var(--text-muted)]">
+          {selectedProject.description}
+        </p>
         {#if selectedProject.tags?.length}
-          <div class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--text-muted)]">
+          <div
+            class="mt-3 flex flex-wrap gap-2 text-xs text-[color:var(--text-muted)]"
+          >
             {#each selectedProject.tags as tag}
-              <span class="rounded-full border border-[color:var(--border)] px-2 py-1">{tag}</span>
+              <span
+                class="rounded-full border border-[color:var(--border)] px-2 py-1"
+                >{tag}</span
+              >
             {/each}
           </div>
         {/if}
@@ -446,14 +544,22 @@
         {#if SkillGraphComponent}
           <svelte:component this={SkillGraphComponent} skills={resume.skills} />
         {:else}
-          <ul class="grid gap-3 text-sm text-[color:var(--text-primary)] sm:grid-cols-2 lg:grid-cols-3">
+          <ul
+            class="grid gap-3 text-sm text-[color:var(--text-primary)] sm:grid-cols-2 lg:grid-cols-3"
+          >
             {#each resume.skills as skill}
-              <li class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4">
+              <li
+                class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-4"
+              >
                 <div class="flex items-center justify-between font-semibold">
                   <span>{skill.name}</span>
-                  <span class="text-[color:var(--accent-2)]">{Math.round((skill.intensity ?? 0.5) * 100)}%</span>
+                  <span class="text-[color:var(--accent-2)]"
+                    >{Math.round((skill.intensity ?? 0.5) * 100)}%</span
+                  >
                 </div>
-                <p class="mt-2 text-xs text-[color:var(--text-muted)]">{skill.tools.join(' · ')}</p>
+                <p class="mt-2 text-xs text-[color:var(--text-muted)]">
+                  {skill.tools.join(' · ')}
+                </p>
               </li>
             {/each}
           </ul>
@@ -471,7 +577,11 @@
     <div class="grid gap-4 md:grid-cols-2">
       {#if resume.blog?.length}
         {#each resume.blog as post}
-          <BlogPostPreview title={post.title} description={post.summary} href={post.href} />
+          <BlogPostPreview
+            title={post.title}
+            description={post.summary}
+            href={post.href}
+          />
         {/each}
       {:else}
         <BlogPostPreview
@@ -483,22 +593,44 @@
     </div>
   </Section>
 
-  <Section id="contact" eyebrow="Contact" title="Collaborate" description="Reach out for immersive web builds.">
+  <Section
+    id="contact"
+    eyebrow="Contact"
+    title="Collaborate"
+    description="Reach out for immersive web builds."
+  >
     <div class="grid gap-4 md:grid-cols-[2fr_1fr]">
-      <div class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5 text-[color:var(--text-muted)]">
+      <div
+        class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5 text-[color:var(--text-muted)]"
+      >
         <p>
-          Email <a class="text-[color:var(--accent-2)]" href="mailto:hello@example.com">hello@example.com</a> or connect
-          on LinkedIn.
+          Email <a
+            class="text-[color:var(--accent-2)]"
+            href="mailto:hello@example.com">hello@example.com</a
+          > or connect on LinkedIn.
         </p>
-        <p class="mt-2 text-sm">Footer icons persist for quick access across the site.</p>
+        <p class="mt-2 text-sm">
+          Footer icons persist for quick access across the site.
+        </p>
       </div>
-      <div class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5">
-        <p class="text-sm uppercase tracking-[0.2em] text-[color:var(--accent-2)]">References</p>
+      <div
+        class="rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5"
+      >
+        <p
+          class="text-sm uppercase tracking-[0.2em] text-[color:var(--accent-2)]"
+        >
+          References
+        </p>
         <ul class="mt-2 space-y-2 text-sm text-[color:var(--text-muted)]">
           {#each resume.references as ref}
-            <li class="flex items-center justify-between rounded-lg bg-[color:var(--bg-primary)]/60 px-3 py-2">
+            <li
+              class="flex items-center justify-between rounded-lg bg-[color:var(--bg-primary)]/60 px-3 py-2"
+            >
               <span>{ref.name}</span>
-              <a class="text-[color:var(--accent-2)]" href={`mailto:${ref.contact}`}>Contact</a>
+              <a
+                class="text-[color:var(--accent-2)]"
+                href={`mailto:${ref.contact}`}>Contact</a
+              >
             </li>
           {/each}
         </ul>
