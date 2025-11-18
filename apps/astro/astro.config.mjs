@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://example.com/Myfolio',
-  outDir: './dist'
+  site: 'https://vrdevil44.github.io/Myfolio',
+  base: '/Myfolio',
+  outDir: './dist',
 });
