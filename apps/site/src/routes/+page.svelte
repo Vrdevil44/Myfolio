@@ -43,6 +43,7 @@
   ];
 
   $: visibleProjects = filterProjects(resume.projects, selectedFilter);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const structuredData = JSON.stringify(
     {
       '@context': 'https://schema.org',
@@ -435,28 +436,28 @@
         </button>
       {/each}
     </div>
-    <div class="grid gap-4 md:grid-cols-2">
-      {#each visibleProjects as project, index}
-        <div
-          class="group cursor-pointer"
-          on:click={() => openProject(project)}
-          on:keypress={(event) => event.key === 'Enter' && openProject(project)}
-          tabindex="0"
-        >
-          <ProjectCard name={project.name} description={project.description} />
-          <div
-            class="mt-2 flex flex-wrap gap-2 text-xs text-[color:var(--text-muted)]"
+      <div class="grid gap-4 md:grid-cols-2">
+        {#each visibleProjects as project}
+          <button
+            type="button"
+            class="group w-full cursor-pointer text-left"
+            on:click={() => openProject(project)}
+            on:keypress={(event) => event.key === 'Enter' && openProject(project)}
           >
-            {#each project.tags ?? [] as tag}
-              <span
-                class="rounded-full border border-[color:var(--border)] px-2 py-1"
-                >{tag}</span
-              >
-            {/each}
-          </div>
-        </div>
-      {/each}
-    </div>
+            <ProjectCard name={project.name} description={project.description} />
+            <div
+              class="mt-2 flex flex-wrap gap-2 text-xs text-[color:var(--text-muted)]"
+            >
+              {#each project.tags ?? [] as tag}
+                <span
+                  class="rounded-full border border-[color:var(--border)] px-2 py-1"
+                  >{tag}</span
+                >
+              {/each}
+            </div>
+          </button>
+        {/each}
+      </div>
   </Section>
 
   {#if selectedProject}
