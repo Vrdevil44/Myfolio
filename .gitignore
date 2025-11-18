@@ -11,3 +11,5 @@ build
 .vercel
 .netlify
 .vscode
+
+.svelte-kit
