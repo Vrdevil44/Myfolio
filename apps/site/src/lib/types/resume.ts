@@ -2,6 +2,8 @@ export type ResumeExperience = {
   role: string;
   company: string;
   timeframe: string;
+  location?: string;
+  icon?: string;
   highlights?: string[];
 };
 
@@ -15,9 +17,18 @@ export type ResumeCertification = {
   issuer: string;
 };
 
+export type ResumeProjectLink = {
+  label: string;
+  url: string;
+};
+
 export type ResumeProject = {
   name: string;
   description: string;
+  category?: string;
+  tags?: string[];
+  cover?: string;
+  links?: ResumeProjectLink[];
 };
 
 export type ResumeReference = {
@@ -25,12 +36,26 @@ export type ResumeReference = {
   contact: string;
 };
 
-export type Resume = {
+export type ResumeSkillCategory = {
+  name: string;
+  tools: string[];
+  intensity?: number;
+};
+
+export type ResumeBlogPost = {
+  title: string;
   summary: string;
-  skills: string[];
+  href: string;
+};
+
+export type Resume = {
+  tagline?: string;
+  summary: string;
+  skills: ResumeSkillCategory[];
   experience: ResumeExperience[];
   education: ResumeEducation[];
   certifications: ResumeCertification[];
   projects: ResumeProject[];
   references: ResumeReference[];
+  blog?: ResumeBlogPost[];
 };

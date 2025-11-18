@@ -1,22 +1,56 @@
+tagline: "Infrastructure-first IT specialist"
 summary: >-
-  Creative frontend engineer building an interactive, gamified portfolio for Vibhu Dikshit with
-  SvelteKit, Astro, Solid, and Qwik islands. Focused on 3D visuals, micro-interactions, and dark-mode UX.
+  Infrastructure-first IT specialist turning messy networks into measurable systems with SvelteKit, Astro,
+  Solid, and Qwik islands. Obsessed with 3D visuals, micro-interactions, and resilient dark-mode UX.
 skills:
-  - SvelteKit
-  - Astro
-  - SolidJS
-  - Qwik
-  - Three.js / Threlte
-  - GSAP / Rive
-  - TypeScript
-  - UnoCSS
+  - name: IT & Networking
+    intensity: 0.9
+    tools:
+      - Cisco Switching
+      - MikroTik Routing
+      - Network Automation
+      - VLAN Design
+  - name: Cloud & Identity
+    intensity: 0.78
+    tools:
+      - M365 Administration
+      - Entra ID
+      - SharePoint Online
+      - Automation Accounts
+  - name: Systems & Ops
+    intensity: 0.72
+    tools:
+      - Windows Server
+      - Hybrid Identity
+      - Monitoring
+      - Backup & Recovery
+  - name: Engineering
+    intensity: 0.82
+    tools:
+      - SvelteKit
+      - Astro Islands
+      - Qwik
+      - SolidJS
+      - Three.js / Threlte
 experience:
-  - role: Frontend Lead
-    company: Myfolio Labs
-    timeframe: 2025
+  - role: Infrastructure Engineer
+    company: Nebula-Portal
+    location: Remote · India
+    timeframe: 2023 — Present
+    icon: i-tabler-server-2
     highlights:
-      - Architected a multi-framework monorepo with pnpm workspaces
-      - Built interactive demos with smooth scrolling and audio feedback
+      - Migrated brownfield networks to automated, observable infrastructure.
+      - Delivered zero-downtime cutovers with preflight simulations and playbooks.
+      - Built self-service portals with SSO and audited automation.
+  - role: Systems Administrator
+    company: MusicPad
+    location: On-site · Pune
+    timeframe: 2021 — 2023
+    icon: i-tabler-topology-star
+    highlights:
+      - Unified monitoring across endpoints, servers, and SaaS.
+      - Reduced ticket volume by 30% with proactive patching and asset intelligence.
+      - Championed accessibility-first UX for internal dashboards.
 education:
   - title: B.S. Computer Science
     institution: Example University
@@ -24,8 +58,41 @@ certifications:
   - title: Web Performance Fundamentals
     issuer: Web Speed Institute
 projects:
+  - name: Nebula-Portal
+    description: Observability-first portal for provisioning lab and production resources.
+    category: Cloud
+    tags: [Automation, Telemetry, SSO]
+    cover: "/images/nebula.jpg"
+    links:
+      - label: Live Demo
+        url: "https://example.com/nebula"
+      - label: GitHub
+        url: "https://github.com/example/nebula"
+  - name: MusicPad
+    description: M365 and identity automation suite with user-friendly runbooks.
+    category: Infrastructure
+    tags: [M365, Entra, Automation]
+    cover: "/images/musicpad.jpg"
+    links:
+      - label: Case Study
+        url: "https://example.com/musicpad"
+      - label: GitHub
+        url: "https://github.com/example/musicpad"
   - name: Myfolio
     description: Gamified portfolio featuring 3D scenes, animation, and YAML-driven content.
+    category: Experience
+    tags: [SvelteKit, Threlte, GSAP]
+    cover: "/images/myfolio.jpg"
+    links:
+      - label: Live Demo
+        url: "https://example.com/myfolio"
 references:
   - name: Vibhu Dikshit
     contact: contact@example.com
+blog:
+  - title: Designing a gamified hero with Threlte
+    summary: How the 3D hero and Lenis smooth scrolling join forces for immersion.
+    href: /blog/threlte-gamified-hero
+  - title: Resumability with Qwik mini-games
+    summary: Quick-loading mini game islands bundled alongside SvelteKit sections.
+    href: /blog/qwik-mini-game

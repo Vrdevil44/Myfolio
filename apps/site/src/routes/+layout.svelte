@@ -3,6 +3,7 @@
   import gsap from 'gsap';
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
+  import * as Tone from 'tone';
 
   export let data;
 
@@ -24,6 +25,18 @@
   let isMenuOpen = false;
   let theme: 'light' | 'dark' = 'dark';
   let drawerEl: HTMLDivElement | null = null;
+  let synth: Tone.Synth | null = null;
+  let audioReady = false;
+
+  const playTone = async (note: string) => {
+    if (!browser) return;
+    if (!audioReady) {
+      await Tone.start();
+      synth = new Tone.Synth().toDestination();
+      audioReady = true;
+    }
+    synth?.triggerAttackRelease(note, '16n');
+  };
 
   const applyTheme = (value: 'light' | 'dark') => {
     if (!browser) return;
@@ -57,8 +70,9 @@
     }
   }
 
-  const toggleMenu = () => {
+  const toggleMenu = async () => {
     isMenuOpen = !isMenuOpen;
+    await playTone(isMenuOpen ? 'A4' : 'F4');
   };
 
   const closeMenu = () => {
@@ -128,7 +142,10 @@
         <button
           class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-3 py-2 text-sm font-semibold text-[color:var(--text-primary)] shadow-sm transition hover:border-[color:var(--accent-2)] hover:text-[color:var(--accent-2)]"
           aria-label="Toggle theme"
-          on:click={() => (theme = theme === 'dark' ? 'light' : 'dark')}
+          on:click={async () => {
+            theme = theme === 'dark' ? 'light' : 'dark';
+            await playTone(theme === 'dark' ? 'E4' : 'C5');
+          }}
         >
           <span class={theme === 'dark' ? 'i-tabler-moon' : 'i-tabler-sun'} aria-hidden="true"></span>
           {theme === 'dark' ? 'Dark' : 'Light'}
