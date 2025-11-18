@@ -1,0 +1,13 @@
+node_modules
+pnpm-lock.yaml
+npm-debug.log*
+dist
+build
+.DS_Store
+.env
+.env.*
+.husky/_
+.cache
+.vercel
+.netlify
+.vscode

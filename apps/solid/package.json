@@ -1,0 +1,29 @@
+{
+  "name": "@myfolio/solid",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@motionone/solid": "^10.17.0",
+    "solid-js": "^1.9.3",
+    "three": "^0.170.0",
+    "@react-three/fiber": "^9.0.0-beta.2",
+    "tone": "^15.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.4",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-solid": "^0.13.2",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-plugin-solid": "^2.10.2"
+  }
+}
