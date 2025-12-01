@@ -1,0 +1,8 @@
+﻿
+> @myfolio/site@0.1.0 build C:\Users\Vibhu Dikshit\OneDrive\Desktop\Work\Projects\myfolio\Myfolio\apps\site
+> svelte-kit sync && vite build
+
+[36mvite v5.4.21 [32mbuilding SSR bundle for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 209 modules transformed.
+rendering chunks...

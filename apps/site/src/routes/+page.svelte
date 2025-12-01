@@ -2,6 +2,7 @@
   import Lenis from 'lenis';
   import { animate } from 'motion';
   import { onMount } from 'svelte';
+  import { base } from '$app/paths';
 
   import BlogPostPreview from '$lib/components/BlogPostPreview.svelte';
   import ProjectCard from '$lib/components/ProjectCard.svelte';
@@ -323,7 +324,6 @@
       <div class="flex flex-wrap items-center gap-4">
         <button
           class="cta-level inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[color:var(--accent)] to-[color:var(--accent-2)] px-5 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:-translate-y-1"
-
         >
           View projects
           <span class="i-tabler-bolt"></span>
@@ -584,15 +584,9 @@
           <BlogPostPreview
             title={post.title}
             description={post.summary}
-            href={post.href}
+            href="{base}{post.href}"
           />
         {/each}
-      {:else}
-        <BlogPostPreview
-          title="Designing a gamified hero with Threlte"
-          description="How the 3D hero and Lenis smooth scrolling join forces for immersion."
-          href="/blog/threlte-gamified-hero"
-        />
       {/if}
     </div>
   </Section>

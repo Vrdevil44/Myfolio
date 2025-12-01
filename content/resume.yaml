@@ -228,10 +228,3 @@ references:
   - name: Sahil Trehan
     role: Manager, Veerji’s Haweli
     contact: sahiltrehan15@gmail.com · +1 (778) 320-6080
-blog:
-  - title: Designing a gamified hero with Threlte
-    summary: How the 3D hero and Lenis smooth scrolling join forces for immersion.
-    href: /blog/threlte-gamified-hero
-  - title: Resumability with Qwik mini-games
-    summary: Quick-loading mini game islands bundled alongside SvelteKit sections.
-    href: /blog/qwik-mini-game

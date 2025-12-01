@@ -11,7 +11,7 @@ const config = {
       fallback: '200.html',
     }),
     paths: {
-      base: dev ? '' : '/Myfolio',
+      base: '/Myfolio',
     },
   },
 };
