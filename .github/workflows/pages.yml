@@ -30,20 +30,10 @@ jobs:
         env:
           NODE_ENV: production
         run: pnpm --filter @myfolio/site build
-      - name: Build Astro docs
-        run: pnpm --filter @myfolio/astro build
-      - name: Build Qwik demo
-        run: pnpm --filter @myfolio/qwik build
-      - name: Build Solid demo
-        run: pnpm --filter @myfolio/solid build
       - name: Prepare dist bundle
         run: |
           mkdir -p dist
-          cp -r apps/site/build dist/site
-          cp -r apps/astro/dist dist/astro
-          cp -r apps/qwik/dist dist/qwik
-          cp -r apps/solid/dist dist/solid
-          echo '<meta http-equiv="refresh" content="0; url=site/">' > dist/index.html
+          cp -r apps/site/build/* dist/
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
