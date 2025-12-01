@@ -1,6 +1,6 @@
 <script lang="ts">
   import Lenis from 'lenis';
-  import { animate, spring } from 'motion';
+  import { animate } from 'motion';
   import { onMount } from 'svelte';
 
   import BlogPostPreview from '$lib/components/BlogPostPreview.svelte';
