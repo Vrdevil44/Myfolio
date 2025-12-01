@@ -5,6 +5,6 @@ export const load: LayoutServerLoad = async () => {
   const resume = await loadResume();
 
   return {
-    resume
+    resume,
   };
 };

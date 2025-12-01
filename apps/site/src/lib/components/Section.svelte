@@ -5,7 +5,7 @@
   export let description: string | undefined = undefined;
 </script>
 
-<section id={id} class="section-shell">
+<section {id} class="section-shell">
   <div class="section-header">
     {#if eyebrow}
       <p class="section-eyebrow">{eyebrow}</p>
@@ -27,7 +27,11 @@
   .section-shell {
     position: relative;
     border: 1px solid var(--border);
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    background: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.01)
+    );
     border-radius: 22px;
     padding: 1.5rem;
     overflow: hidden;
@@ -37,8 +41,17 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 25% 20%, rgba(103, 232, 249, 0.1), transparent 35%),
-      radial-gradient(circle at 80% 0%, rgba(167, 139, 250, 0.08), transparent 40%);
+    background:
+      radial-gradient(
+        circle at 25% 20%,
+        rgba(103, 232, 249, 0.1),
+        transparent 35%
+      ),
+      radial-gradient(
+        circle at 80% 0%,
+        rgba(167, 139, 250, 0.08),
+        transparent 40%
+      );
     pointer-events: none;
     opacity: 0.7;
   }

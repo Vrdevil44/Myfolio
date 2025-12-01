@@ -8,7 +8,11 @@
   const levelUp = () => {
     clicks += 1;
     if (!badge) return;
-    animate(badge, { scale: [1, 1.12, 1] }, { duration: 0.35, easing: spring({ stiffness: 380, damping: 20 }) });
+    animate(
+      badge,
+      { scale: [1, 1.12, 1] },
+      { duration: 0.35, easing: spring({ stiffness: 380, damping: 20 }) }
+    );
   };
 
   onMount(() => {
@@ -21,12 +25,22 @@
   });
 </script>
 
-<div class="grid gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5">
+<div
+  class="grid gap-3 rounded-2xl border border-[color:var(--border)] bg-[color:var(--bg-elevated)] p-5"
+>
   <div class="flex items-center justify-between">
     <div class="space-y-1">
-      <p class="text-xs uppercase tracking-[0.2em] text-[color:var(--accent-2)]">Mini game</p>
-      <h3 class="text-xl font-semibold text-[color:var(--text-primary)]">Momentum Tap</h3>
-      <p class="text-sm text-[color:var(--text-muted)]">Earn streaks and micro-interactions in the hero.</p>
+      <p
+        class="text-xs uppercase tracking-[0.2em] text-[color:var(--accent-2)]"
+      >
+        Mini game
+      </p>
+      <h3 class="text-xl font-semibold text-[color:var(--text-primary)]">
+        Momentum Tap
+      </h3>
+      <p class="text-sm text-[color:var(--text-muted)]">
+        Earn streaks and micro-interactions in the hero.
+      </p>
     </div>
     <div
       bind:this={badge}

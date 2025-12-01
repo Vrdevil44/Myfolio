@@ -18,7 +18,11 @@
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            animate(entry.target as HTMLElement, { opacity: [0, 1], y: [16, 0] }, { duration: 0.45, easing: 'easeOut' });
+            animate(
+              entry.target as HTMLElement,
+              { opacity: [0, 1], y: [16, 0] },
+              { duration: 0.45, easing: 'easeOut' }
+            );
             observer.disconnect();
           }
         });
@@ -38,21 +42,29 @@
 >
   <div class="flex items-start justify-between gap-3">
     <div class="flex items-center gap-3">
-      <span class={`i-tabler ${icon} h-10 w-10 rounded-full bg-gradient-to-br from-[color:var(--accent)] to-[color:var(--accent-2)] p-2 text-slate-950`}></span>
+      <span
+        class={`i-tabler ${icon} h-10 w-10 rounded-full bg-gradient-to-br from-[color:var(--accent)] to-[color:var(--accent-2)] p-2 text-slate-950`}
+      ></span>
       <div>
-        <h3 class="text-lg font-semibold text-[color:var(--text-primary)]">{role}</h3>
+        <h3 class="text-lg font-semibold text-[color:var(--text-primary)]">
+          {role}
+        </h3>
         <p class="text-sm text-[color:var(--text-muted)]">{company}</p>
         {#if location}
           <p class="text-xs text-[color:var(--text-muted)]">{location}</p>
         {/if}
       </div>
     </div>
-    <span class="rounded-full bg-[color:var(--bg-primary)] px-3 py-1 text-xs font-semibold text-[color:var(--accent-2)]">
+    <span
+      class="rounded-full bg-[color:var(--bg-primary)] px-3 py-1 text-xs font-semibold text-[color:var(--accent-2)]"
+    >
       {timeframe}
     </span>
   </div>
   {#if highlights?.length}
-    <ul class="list-inside list-disc space-y-1 text-sm text-[color:var(--text-muted)]">
+    <ul
+      class="list-inside list-disc space-y-1 text-sm text-[color:var(--text-muted)]"
+    >
       {#each highlights as item}
         <li>{item}</li>
       {/each}

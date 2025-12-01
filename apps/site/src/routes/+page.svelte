@@ -188,7 +188,7 @@
 
     startLenis();
     startSparkAnimation();
-    void startParticles();
+    // void startParticles();
     void loadSignature();
 
     const skillsObserver = new IntersectionObserver(
@@ -323,7 +323,7 @@
       <div class="flex flex-wrap items-center gap-4">
         <button
           class="cta-level inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[color:var(--accent)] to-[color:var(--accent-2)] px-5 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:-translate-y-1"
-          on:click={levelUp}
+
         >
           View projects
           <span class="i-tabler-bolt"></span>
@@ -535,7 +535,10 @@
   >
     <div class="space-y-4" bind:this={skillsSection}>
       {#if SkillOrbitComponent}
-        <svelte:component this={SkillOrbitComponent} skills={resume.skills} />
+        <!-- <svelte:component this={SkillOrbitComponent} /> -->
+        <div class="flex items-center justify-center p-8">
+          <img src="/skill_orbit.png" alt="3D Skill Orbit" class="max-w-full rounded-2xl opacity-80" />
+        </div>
       {:else}
         <p class="text-sm text-[color:var(--text-muted)]" role="status">
           Loading interactive orbit… here is the accessible list while you wait.

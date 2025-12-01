@@ -1,5 +1,6 @@
 <script lang="ts">
   import '@fontsource-variable/manrope';
+  import 'virtual:uno.css';
   import gsap from 'gsap';
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
@@ -97,7 +98,7 @@
   <style>
     :global(body) {
       font-family:
-        'Manrope Variable',
+        'Manrope',
         system-ui,
         -apple-system,
         'Segoe UI',

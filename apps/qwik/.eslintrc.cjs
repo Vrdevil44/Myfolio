@@ -2,7 +2,7 @@ module.exports = {
   root: true,
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
-  extends: ['eslint:recommended', 'plugin:qwik/recommended', 'prettier']
+  extends: ['eslint:recommended', 'plugin:qwik/recommended', 'prettier'],
 };

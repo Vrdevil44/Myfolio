@@ -6,6 +6,7 @@ Solid micro-interaction island. Animation and creative tooling (GSAP, Rive, Thre
 Tone.js, p5.js) are wired into the stacks.
 
 ## Structure
+
 - `apps/site` – SvelteKit core site with UnoCSS and dark-mode hero.
 - `apps/astro` – Astro docs/blog space for roadmap content.
 - `apps/qwik` – Qwik micro-game placeholder to showcase resumability.
@@ -13,6 +14,7 @@ Tone.js, p5.js) are wired into the stacks.
 - `content/resume.yaml` – Human-editable resume content loaded by the site.
 
 ## Scripts
+
 Use pnpm from the repo root:
 
 ```bash
@@ -24,6 +26,7 @@ pnpm --filter @myfolio/solid dev
 ```
 
 ## Tooling
+
 - TypeScript, ESLint, Prettier, Husky hooks, and commitlint are preconfigured.
 - GitHub Pages workflows (`.github/workflows/*.yml`) build and publish each app on pushes to `main`.
 
