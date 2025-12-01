@@ -215,17 +215,17 @@
     };
   });
 
-  const levelUp = () => {
-    score += 10;
-    const button = document.querySelector('.cta-level');
-    if (button && !prefersReducedMotion) {
-      animate(
-        button,
-        { scale: [1, 1.05, 1] },
-        { easing: spring({ stiffness: 400, damping: 20 }), duration: 0.35 }
-      );
-    }
-  };
+  // const levelUp = () => {
+  //   score += 10;
+  //   const button = document.querySelector('.cta-level');
+  //   if (button && !prefersReducedMotion) {
+  //     animate(
+  //       button,
+  //       { scale: [1, 1.05, 1] },
+  //       { easing: spring({ stiffness: 400, damping: 20 }), duration: 0.35 }
+  //     );
+  //   }
+  // };
 
   const openProject = (project: ResumeProject) => {
     selectedProject = project;
